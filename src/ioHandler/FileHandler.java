@@ -1,8 +1,9 @@
 package ioHandler;
 
-import AsciiImage.AsciiImage;
+import AsciiImage.*;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -42,5 +43,37 @@ public class FileHandler {
         return Arrays.stream(subFiles)
                 .filter(e -> e.getName().contains(INPUT_FILE_CONDITION))
                 .toArray(File[]::new);
+    }
+
+    public static void GenerateOutput(ImageData imgData){
+        FileHandler.GenerateOutput(imgData.GetImage(), imgData.GetInputPath());
+    }
+
+    public static void GenerateOutput(String content, String inPath){
+        FileHandler.GenerateOutput(new String[]{content}, inPath);
+    }
+
+    public static void GenerateOutput(String[] lines, String inPath){
+        String content = String.join("\r\n", lines);
+        String outPath = InToOutPath(inPath);
+
+        File out = new File(outPath);
+
+        try {
+            out.createNewFile();
+            FileWriter fw = new FileWriter(out);
+            fw.write(content);
+            fw.close();
+        }
+        catch(Exception ex){
+
+        }
+    }
+
+    private static String InToOutPath(String inPath){
+        char[] inPathChars = inPath.toCharArray();
+        inPathChars[inPath.length() - 2] = 'c';
+
+        return String.valueOf(inPathChars);
     }
 }

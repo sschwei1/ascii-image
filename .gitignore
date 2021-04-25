@@ -1,13 +1,4 @@
 
-.idea/description.html
-.idea/encodings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/project-template.xml
-.idea/uiDesigner.xml
-.idea/vcs.xml
-out/production/AsciiImage/AsciiImage/AsciiImage.class
-out/production/AsciiImage/AsciiImage/ImageData.class
-out/production/AsciiImage/ioHandler/FileHandler.class
-out/production/AsciiImage/ioHandler/IOHandler.class
-out/production/AsciiImage/Main.class
+.idea/*
+out/*
+files/**/*.c*

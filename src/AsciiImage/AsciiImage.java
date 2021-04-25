@@ -10,19 +10,20 @@ public class AsciiImage {
     }
 
     public static ImageData GetImageData(String path){
-        return AsciiImage.GetImageData(FileHandler.GetLines(path));
+        return AsciiImage.GetImageData(FileHandler.GetLines(path), path);
     }
 
     public static ImageData GetImageData(File file){
-        return AsciiImage.GetImageData(FileHandler.GetLines(file));
+        return AsciiImage.GetImageData(FileHandler.GetLines(file), file.getPath());
     }
 
-    public static ImageData GetImageData(String[] lines){
+    public static ImageData GetImageData(String[] lines, String path){
         ImageData imgData = new ImageData();
 
         if(lines.length != 0){
             imgData.width = lines[0].length();
             imgData.height = lines.length;
+            imgData.inputPath = path;
 
             for(int i = 1; i < lines.length; i++){
                 if (lines[i].length() != imgData.width) {
